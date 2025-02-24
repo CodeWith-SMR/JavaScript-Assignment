@@ -104,7 +104,7 @@ Muhammad Raza
 Founder of Code With SMR 👨‍💻🚀
 
 📧 Contact: codewithsmr@gmail.com
-🔗 GitHub: github.com/CodeWith-SMR
+🔗 GitHub: https://github.com/CodeWith-SMR
 
 
 ✨ Thank you for checking out this repository! Keep coding and keep building amazing things. 🚀🔥
