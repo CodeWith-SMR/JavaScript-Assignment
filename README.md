@@ -46,7 +46,7 @@ Each assignment is structured in a way that builds your knowledge step by step, 
 ✅ Using variables to track visitor counts, display birth years, and more.  
 
 💡 **Example:**  
-> "🎂 My age is **25 years**."  
+> "🎂 My age is **20 years**."  
 > "👀 You have visited this site **5 times**."  
 
 ---
