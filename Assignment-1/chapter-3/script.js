@@ -6,22 +6,6 @@ let myAge = "20";
 
 
 
- /* 2. Declare & initialize a variable to keep track of how many
-times a visitor has visited a web page. Show his/her
-number of visits on your web page. For example: “You
-have visited this site N times”. */
-// Check if the 'visitCount' key exists in localStorage
-if (localStorage.getItem("visitCount")) {
-  localStorage.setItem("visitCount", Number(localStorage.getItem("visitCount")) + 1);
-} else {
-  localStorage.setItem("visitCount", 1);
-}
-
-let visitCount = localStorage.getItem("visitCount");
-
-console.log("You have visited this site " + visitCount + " times.");
-
-
 
 /* 3. Declare a variable called birthYear & assign to it your
 birth year. Show the following message in your browser: */
