@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="./Style/style.css">
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <div class="header">
+            <span>Muhammad Raza (<span id="theme-text">SMR</span>)</span>
+        </div>
+        
+        <div class="todo-container">
+            <h1>TODO LIST</h1>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search note...">
+                    <div class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="filter-dropdown">
+                    <button id="filter-button" class="filter-button">
+                        ALL
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="filter-dropdown" class="dropdown-content hidden">
+                        <div class="dropdown-item" data-filter="all">All</div>
+                        <div class="dropdown-item" data-filter="complete">Complete</div>
+                        <div class="dropdown-item" data-filter="incomplete">Incomplete</div>
+                    </div>
+                </div>
+                
+                <button id="theme-toggle" class="settings-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="todo-list" class="todo-list">
+                <!-- Todo items will be added here by JavaScript -->
+            </div>
+            
+            
+            <div id="empty-state" class="empty-state hidden">
+    <img src="./images/Empty.png" alt="Empty state illustration" class="empty-image">
+    <p>Empty...</p>
+</div>
+
+<div id="todo-list">
+    <!-- Todo items will be dynamically inserted here -->
+</div>
+
+            
+            <div id="undo-container" class="undo-container hidden">
+                <button id="undo-button" class="undo-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 7v6h6"></path>
+                        <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+                    </svg>
+                    UNDO
+                </button>
+            </div>
+            
+            <button id="add-button" class="add-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div id="new-note-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>NEW NOTE</h2>
+                <input type="text" id="new-note-input" placeholder="Input your note...">
+                <div class="modal-buttons">
+                    <button id="cancel-button" class="cancel-button">CANCEL</button>
+                    <button id="apply-button" class="apply-button">APPLY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./Js/script.js"></script>
+</body>
+</html>
