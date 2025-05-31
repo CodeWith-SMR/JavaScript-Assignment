@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const undoContainer = document.getElementById('undo-container');
     const undoButton = document.getElementById('undo-button');
     
-    // Initial todos
+    // Shuruati todos
     let todos = [
         { id: 1, text: 'HTML & CSS #1', completed: false },
         { id: 2, text: 'JavaScript #2', completed: true },
@@ -29,46 +29,41 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastActionData = null;
     let undoTimeout = null;
     
-    // Check for saved theme preference
+    // Saved theme preference check karein
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     
-    // Update theme toggle icon based on current theme
+    // Theme toggle icon ko update karein current theme ke hisab se
     updateThemeIcon();
     
-    // Initialize the app
+    // App ko shuru karein
     function init() {
         loadTodos();
         renderTodos();
         setupEventListeners();
     }
     
-   
-function renderTodos() {
-    const filteredTodos = filterTodos(todos, currentFilter);
+    // Todos ko display karein
+    function renderTodos() {
+        const filteredTodos = filterTodos(todos, currentFilter);
 
-    // Step 1: اگر filteredTodos خالی ہوں
-    if (filteredTodos.length === 0) {
-        todoList.classList.add('hidden'); // todos کی لسٹ چھپ جائے گی
-        emptyState.classList.remove('hidden'); // empty state دکھے گا
-    } else {
-        todoList.classList.remove('hidden'); // اگر نتائج ہوں تو todos دکھائیں
-        emptyState.classList.add('hidden'); // empty state چھپ جائے گا
-        
-        todoList.innerHTML = ''; // پچھلے results کو صاف کریں
-        filteredTodos.forEach(todo => {
-            const todoItem = createTodoItem(todo);
-            todoList.appendChild(todoItem);
-        });
+        // Step 1: agar filteredTodos khali ho
+        if (filteredTodos.length === 0) {
+            todoList.classList.add('hidden'); // todos ki list chop jay gi
+            emptyState.classList.remove('hidden'); // empty state dikhe ga
+        } else {
+            todoList.classList.remove('hidden'); // agar natayj hon to todos dikhayn
+            emptyState.classList.add('hidden'); // empty state chop jay ga
+            
+            todoList.innerHTML = ''; // pichle results ko saaf karin
+            filteredTodos.forEach(todo => {
+                const todoItem = createTodoItem(todo);
+                todoList.appendChild(todoItem);
+            });
+        }
     }
-}
-
-
-
     
-
-    
-    // Create a todo item element
+    // Naya todo item element banayein
     function createTodoItem(todo) {
         const todoItem = document.createElement('div');
         todoItem.classList.add('todo-item');
@@ -97,7 +92,7 @@ function renderTodos() {
             ` : ''}
         `;
         
-        // Add event listeners
+        // Event listeners add karein
         const checkbox = todoItem.querySelector('.checkbox');
         checkbox.addEventListener('change', () => toggleTodo(todo.id));
         
@@ -127,7 +122,7 @@ function renderTodos() {
         return todoItem;
     }
     
-    // Filter todos
+    // Todos ko filter karein
     function filterTodos(todos, filter) {
         switch(filter) {
             case 'complete':
@@ -140,7 +135,7 @@ function renderTodos() {
         }
     }
     
-    // Toggle todo completion
+    // Todo completion status toggle karein
     function toggleTodo(id) {
         const todoIndex = todos.findIndex(todo => todo.id === id);
         if (todoIndex === -1) return;
@@ -152,7 +147,7 @@ function renderTodos() {
             completed: !todos[todoIndex].completed
         };
         
-        // Save for undo
+        // Undo ke liye save karein
         lastAction = 'toggle';
         lastActionData = { id, completed: todoBeforeChange.completed };
         showUndoButton();
@@ -161,13 +156,13 @@ function renderTodos() {
         saveTodos();
     }
     
-    // Set active note
+    // Active note set karein
     function setActiveNote(id) {
         activeNoteId = id === activeNoteId ? null : id;
         renderTodos();
     }
     
-    // Delete todo
+    // Todo delete karein
     function deleteTodo(id) {
         const todoIndex = todos.findIndex(todo => todo.id === id);
         if (todoIndex === -1) return;
@@ -176,12 +171,12 @@ function renderTodos() {
         
         todos.splice(todoIndex, 1);
         
-        // Reset active note if it was deleted
+        // Agar active note delete ho gaya ho to reset karein
         if (activeNoteId === id) {
             activeNoteId = todos.length > 0 ? todos[0].id : null;
         }
         
-        // Save for undo
+        // Undo ke liye save karein
         lastAction = 'delete';
         lastActionData = deletedTodo;
         showUndoButton();
@@ -190,7 +185,7 @@ function renderTodos() {
         saveTodos();
     }
     
-    // Edit todo
+    // Todo edit karein
     function editTodo(id) {
         const todo = todos.find(todo => todo.id === id);
         if (!todo) return;
@@ -198,14 +193,14 @@ function renderTodos() {
         newNoteInput.value = todo.text;
         newNoteModal.classList.remove('hidden');
         
-        // Focus the input field
+        // Input field pe focus karein
         newNoteInput.focus();
         
-        // Clear previous event listeners
+        // Pichle event listeners ko clear karein
         const newApplyButton = applyButton.cloneNode(true);
         applyButton.parentNode.replaceChild(newApplyButton, applyButton);
         
-        // Update apply button to handle edit
+        // Apply button ko edit ke liye update karein
         newApplyButton.onclick = function() {
             const newText = newNoteInput.value.trim();
             if (newText && newText !== todo.text) {
@@ -218,7 +213,7 @@ function renderTodos() {
                     return t;
                 });
                 
-                // Save for undo
+                // Undo ke liye save karein
                 lastAction = 'edit';
                 lastActionData = { id, text: oldText };
                 showUndoButton();
@@ -232,19 +227,19 @@ function renderTodos() {
         };
     }
     
-    // Add new todo
+    // Naya todo add karein
     function addTodo() {
         newNoteInput.value = '';
         newNoteModal.classList.remove('hidden');
         
-        // Focus the input field
+        // Input field pe focus karein
         newNoteInput.focus();
         
-        // Clear previous event listeners
+        // Pichle event listeners ko clear karein
         const newApplyButton = applyButton.cloneNode(true);
         applyButton.parentNode.replaceChild(newApplyButton, applyButton);
         
-        // Set apply button to handle add
+        // Apply button ko add ke liye set karein
         newApplyButton.onclick = function() {
             const text = newNoteInput.value.trim();
             if (text) {
@@ -257,7 +252,7 @@ function renderTodos() {
                 
                 todos.push(newTodo);
                 
-                // Save for undo
+                // Undo ke liye save karein
                 lastAction = 'add';
                 lastActionData = { id: newId };
                 showUndoButton();
@@ -270,40 +265,38 @@ function renderTodos() {
         };
     }
     
-    
-function searchTodos(query) {
-    const trimmedQuery = query.trim().toLowerCase();
+    // Todos ko search karein
+    function searchTodos(query) {
+        const trimmedQuery = query.trim().toLowerCase();
 
-    // Step 1: اگر کوئی سرچ نہیں کی گئی، تو نارمل رینڈر
-    if (!trimmedQuery) {
-        renderTodos(); // یہ لسٹ کے تمام آئٹمز دکھائے گا
-        return;
+        // Step 1: agar koi search nahi ki gayi, to normal render
+        if (!trimmedQuery) {
+            renderTodos(); // yeh list ke tamam items dikhayega
+            return;
+        }
+
+        // Step 2: search filter lagayein
+        const filteredTodos = todos.filter(todo =>
+            todo.text.toLowerCase().includes(trimmedQuery)
+        );
+
+        // Step 3: agar filteredTodos khali hon
+        if (filteredTodos.length === 0) {
+            todoList.classList.add('hidden'); // to todos ki list chhup jayegi
+            emptyState.classList.remove('hidden'); // aur empty state dikhega
+        } else {
+            todoList.classList.remove('hidden'); // agar kuch results hain to todos dikhayen
+            emptyState.classList.add('hidden'); // empty state chhup jayega
+            
+            todoList.innerHTML = ''; // pichle results ko saaf karein
+            filteredTodos.forEach(todo => {
+                const todoItem = createTodoItem(todo);
+                todoList.appendChild(todoItem);
+            });
+        }
     }
-
-    // Step 2: سرچ فلٹر لگائیں
-    const filteredTodos = todos.filter(todo =>
-        todo.text.toLowerCase().includes(trimmedQuery)
-    );
-
-    // Step 3: اگر filteredTodos خالی ہوں
-    if (filteredTodos.length === 0) {
-        todoList.classList.add('hidden'); // تو todos کی لسٹ چھپے گی
-        emptyState.classList.remove('hidden'); // اور empty state دکھے گا
-    } else {
-        todoList.classList.remove('hidden'); // اگر کچھ نتائج ہیں تو todos دکھائیں
-        emptyState.classList.add('hidden'); // empty state چھپ جائے گا
-        
-        todoList.innerHTML = ''; // پچھلے results کو صاف کریں
-        filteredTodos.forEach(todo => {
-            const todoItem = createTodoItem(todo);
-            todoList.appendChild(todoItem);
-        });
-    }
-}
-
     
-    
-    // Set theme
+    // Theme set karein
     function setTheme(theme) {
         document.body.className = theme + '-theme';
         themeText.textContent = theme === 'dark' ? 'SMR' : 'SMR';
@@ -311,7 +304,7 @@ function searchTodos(query) {
         updateThemeIcon();
     }
     
-    // Update theme icon based on current theme
+    // Theme icon ko current theme ke hisab se update karein
     function updateThemeIcon() {
         const currentTheme = localStorage.getItem('theme') || 'dark';
         
@@ -334,35 +327,35 @@ function searchTodos(query) {
         `;
     }
     
-    // Toggle theme
+    // Theme toggle karein
     function toggleTheme() {
         const currentTheme = localStorage.getItem('theme') || 'dark';
         setTheme(currentTheme === 'dark' ? 'light' : 'dark');
     }
     
-    // Show undo button
+    // Undo button dikhayen
     function showUndoButton() {
-        // Clear any existing timeout
+        // Existing timeout ko clear karein
         if (undoTimeout) {
             clearTimeout(undoTimeout);
         }
         
         undoContainer.classList.remove('hidden');
         
-        // Hide after 5 seconds
+        // 9 seconds baad chhup jaye
         undoTimeout = setTimeout(() => {
             undoContainer.classList.add('hidden');
         }, 9000);
     }
     
-    // Undo last action
+    // Pichla action undo karein
     function undoLastAction() {
         if (!lastAction || !lastActionData) return;
         
         switch(lastAction) {
             case 'add':
                 todos = todos.filter(todo => todo.id !== lastActionData.id);
-                // Reset active note if it was the added one
+                // Agar added wala active tha to reset karein
                 if (activeNoteId === lastActionData.id) {
                     activeNoteId = todos.length > 0 ? todos[0].id : null;
                 }
@@ -400,12 +393,12 @@ function searchTodos(query) {
         saveTodos();
     }
     
-    // Save todos to localStorage
+    // Todos ko localStorage mein save karein
     function saveTodos() {
         localStorage.setItem('todos', JSON.stringify(todos));
     }
     
-    // Load todos from localStorage
+    // Todos ko localStorage se load karein
     function loadTodos() {
         const savedTodos = localStorage.getItem('todos');
         if (savedTodos) {
@@ -416,7 +409,7 @@ function searchTodos(query) {
         }
     }
     
-    // Setup event listeners
+    // Event listeners setup karein
     function setupEventListeners() {
         addButton.addEventListener('click', addTodo);
         
@@ -445,7 +438,7 @@ function searchTodos(query) {
         
         undoButton.addEventListener('click', undoLastAction);
         
-        // Close modals when clicking outside
+        // Modal ke bahar click karne par band karein
         document.addEventListener('click', (e) => {
             if (e.target === newNoteModal) {
                 newNoteModal.classList.add('hidden');
@@ -456,7 +449,7 @@ function searchTodos(query) {
             }
         });
         
-        // Handle keyboard events
+        // Keyboard events handle karein
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !newNoteModal.classList.contains('hidden')) {
                 newNoteModal.classList.add('hidden');
@@ -464,37 +457,33 @@ function searchTodos(query) {
         });
     }
 
-
-
-
     // Right-click disable
-document.addEventListener('contextmenu', function (e) {
-  e.preventDefault();
-});
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+    });
 
-// Keyboard shortcuts disable
-document.addEventListener('keydown', function (e) {
-  if (e.keyCode === 123) { // F12
-    e.preventDefault();
-  }
-  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 67 || e.keyCode === 74)) {
-    // Ctrl+Shift+I / Ctrl+Shift+C / Ctrl+Shift+J
-    e.preventDefault();
-  }
-  if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) {
-    // Ctrl+U / Ctrl+S
-    e.preventDefault();
-  }
-});
+    // Keyboard shortcuts disable
+    document.addEventListener('keydown', function (e) {
+      if (e.keyCode === 123) { // F12
+        e.preventDefault();
+      }
+      if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 67 || e.keyCode === 74)) {
+        // Ctrl+Shift+I / Ctrl+Shift+C / Ctrl+Shift+J
+        e.preventDefault();
+      }
+      if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) {
+        // Ctrl+U / Ctrl+S
+        e.preventDefault();
+      }
+    });
 
-// Detect if Developer Tools are Open
-setInterval(function() {
-  if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-    document.body.innerHTML = "<h1 style='color:red; text-align:center;'>Access Denied</h1>";
-  }
-}, 500);
-
+    // Detect if Developer Tools are Open
+    setInterval(function() {
+      if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+        document.body.innerHTML = "<h1 style='color:red; text-align:center;'>Access Denied</h1>";
+      }
+    }, 500);
     
-    // Initialize the app
+    // App ko shuru karein
     init();
 });
