@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Stoke:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Stoke", serif;
+}
+
+body {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #5145BA;
+}
+
+:where(.config-container, .quiz-container, .result-container) {
+    display: none;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+}
+
+.config-container {
+    display: block;
+    width: 415px;
+    padding: 25px;
+    text-align: center;
+}
+
+.config-container .config-title {
+    font-size: 1.31rem;
+}
+
+.config-container .config-option {
+    margin-top: 25px;
+}
+
+.config-option .option-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.config-option .category-option {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.config-option .questions-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0 30px;
+    justify-content: center;
+
+}
+
+.config-option button {
+    padding: 12px;
+    font-size: 0.938rem;
+    font-weight: 500;
+    border: 1px solid #9B8FFF;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.3s ease;
+} 
+
+.config-option button.active {
+    color: #5145BA;
+    border-color: #5145BA;
+    background: #dfdfdf;
+}
+
+.config-option button:hover,
+.quiz-content .answer-option:hover {
+    background-color: #9B8FFF;
+}
+
+.questions-options button {
+    flex: 1 1 10%;
+}
+
+.config-container .start-quiz-btn,
+.quiz-footer .next-question-btn,
+.result-container .try-again-btn {
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    background: #5145BA;
+    padding: 13px 25px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.config-container .start-quiz-btn {
+    margin-top: 30px;
+}
+
+.config-container .start-quiz-btn:hover,
+.quiz-footer .next-question-btn:hover,
+.result-container .try-again-btn:hover {
+    background: #403795;
+}
+
+.quiz-container {
+    width: 480px;
+}
+
+.quiz-container .quiz-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 25px;
+    justify-content: space-between;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-header .quiz-title {
+    font-size: 1.43rem;
+    font-weight: 700;
+}
+
+.quiz-header .quiz-timer {
+    display: flex;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    width: 70px;
+    padding: 7px 9px;
+    border-radius: 6px;
+    background: #32313c;
+}
+
+.quiz-header .quiz-timer i {
+    font-size: 1.4rem;
+}
+
+.quiz-container .quiz-content {
+    padding: 20px 25px 25px;
+}
+
+.quiz-content .question-next {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.quiz-content .answer-options {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.quiz-content .answer-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    background: #F3F1FF;
+    border: 1px solid #9B8FFF;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.quiz-content .answer-option i {
+    display: block;
+    flex-shrink: 0;
+    margin: -4px -3px -4px 12px;
+}
+
+.quiz-content .answer-option.correct {
+    border-color: #B7E1C1;
+    background: #D4EDDA;
+    color: #155724;
+}
+
+.quiz-content .answer-option.incorrect {
+    border-color: #F4BEC3;
+    background: #F8D7DA;
+    color: #721c24;
+}
+
+.quiz-container .quiz-footer {
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #c6c6c6;
+}
+
+.quiz-footer .question-status {
+    font-weight: 500;
+}
+
+.quiz-footer .question-status b,
+.result-container .result-message b {
+    font-weight: 600;
+}
+
+.quiz-footer .next-question-btn {
+    display: inline-flex;
+    gap: 5px;
+    visibility: hidden;
+    align-items: center;
+    padding: 9px 17px;
+}
+
+.result-container {
+    text-align: center;
+    padding: 40px;
+    width: 410px;
+}
+
+.result-container .result-image {
+    width: 110px;
+}
+
+.result-container .result-title {
+    margin-top: 30px;
+}
+
+.result-container .result-message {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.result-container .try-again-btn {
+    margin-top: 30px;
+    padding: 12px 20px;
+}
+
+
+/* Add these to your existing CSS */
+
+/* Icons styling */
+.answer-option i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.answer-option .correct-icon {
+    color: #28a745;
+}
+
+.answer-option .incorrect-icon {
+    color: #dc3545;
+}
+
+/* Selected option styling */
+.answer-option.selected {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.quiz-timer {
+    animation: pulse 1s infinite;
+}
+
+.quiz-timer.warning {
+    color: #ffc107;
+    background-color: #32313c;
+}
+
+.quiz-timer.danger {
+    color: #dc3545;
+    background-color: #32313c;
+    animation: pulse 0.5s infinite;
+}
+
+/* Result container enhancements */
+.result-container {
+    background: linear-gradient(135deg, #5145BA 0%, #403795 100%);
+    color: white;
+}
+
+.result-title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.result-message {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.try-again-btn {
+    background-color: white;
+    color: #5145BA;
+    font-weight: 600;
+}
+
+.try-again-btn:hover {
+    background-color: #f8f9fa;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .config-container, .quiz-container, .result-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .quiz-content .question-next {
+        font-size: 1.2rem;
+    }
+    
+    .config-option .category-option {
+        grid-template-columns: 1fr;
+    }
+    
+    .quiz-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&family=Open+Sans:wght@300;400&family=Montserrat:wght@400;700&family=Lato:wght@400;700&family=Oswald:wght@400;600&family=Nunito:wght@400;600&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;600&family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&family=Merriweather:wght@400;700&family=Ubuntu:wght@400;700&family=Bebas+Neue&family=Lobster&family=Caveat:wght@400;600&family=Dancing+Script:wght@400;600&family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+
+    <!-- <div>
+    👨‍💻 Hi, Developer and owner of Code With SMR, Muhammad Raza. 😊
+    </div> -->
+
+    <!-- Quiz Configuration Container -->
+    <div class="config-container">
+        <h2 class="config-title">Quiz Configuration</h2>
+
+        <div class="config-option">
+            <h4 class="option-title">Select category</h4>
+            <div class="category-option">
+                <button class="category-option active">HTML</button>
+                <button class="category-option">CSS</button>    
+                <button class="category-option">JavaScript</button>
+                <button class="category-option">TypeScript</button>              
+            </div>
+
+            <div class="config-option">
+            <h4 class="option-title">No. of Questions</h4>
+            <div class="questions-options">
+                <button class="questions-option">5</button>
+                <button class="questions-option active">10</button>    
+                <button class="questions-option">15</button>
+                <button class="questions-option">20</button>  
+                <button class="questions-option">25</button>            
+            </div>
+        </div>
+
+        <button class="start-quiz-btn">Start Quiz</button>
+    </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <header class="quiz-header">
+            <h2 class="quiz-title">Quiz application</h2>
+            <div class="quiz-timer">
+                <i class="fa-regular fa-clock"></i>
+                <p class="time-duration">15s</p>
+            </div>
+        </header>
+        <div class="quiz-content">
+            <h2 class="question-next"></h2>
+            <ul class="answer-options"></ul>
+        </div>
+
+        <div class="quiz-footer">
+            <p class="question-status"><b>2</b> of <b>10</b> Questions</p>
+            <button class="next-question-btn">
+                Next
+                <i class="fa-solid fa-arrow-right"></i> 
+            </button>
+        </div>
+    </div>
+
+    <!-- Result Container -->
+    <div class="result-container">
+        <img src="./images/quiz-over.png" class="result-image" alt="Quiz Over">
+        <h2 class="result-title">Quiz Completed!</h2>
+        <p class="result-message"></p>
+        <button class="try-again-btn">Try Again</button>
+    </div>
+    
+    <script src="./JavaScript/questions.js"></script>
+    <script src="./JavaScript/script.js"></script>
+    
+</body>
+</html>
